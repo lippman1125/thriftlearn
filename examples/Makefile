@@ -5,7 +5,7 @@ OBJECT=./util/publicfunctions.o ./util/inifile.o ./thrift/gen-cpp/StudentServ.o 
 CPP=g++ -g -std=c++11
 
 ITHRIFT=-I./thrift/gen-cpp -I/usr/local/include/thrift/ 
-LTHRIFT=/usr/local/thrift/lib/libthrift.a
+LTHRIFT=/usr/local/lib/libthrift.a
 
 CFLAGS=-I. -I./util ${ITHRIFT} 
 LFLAGS=-pthread -ldl
@@ -29,5 +29,4 @@ server:$(OBJECT) server.o
 
 clean:
 	$(RM) *.o ./util/*.o ./thrift/gen-cpp/*.o  client server
-	/usr/local/thrift/bin/thrift -o ./thrift/ --gen cpp ./thrift/student.thrift
 	

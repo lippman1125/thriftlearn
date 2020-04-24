@@ -32,10 +32,10 @@ void sendRecv()
 		return ;
 	}
 	printf("serverip: %s, port: %d\n", str_ip.c_str(), port);
-    boost::shared_ptr<TSocket> socket(new TSocket(str_ip.c_str(), port));
-    boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
-    boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
-    
+    ::apache::thrift::stdcxx::shared_ptr<TSocket> socket(new TSocket(str_ip.c_str(), port));
+    ::apache::thrift::stdcxx::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
+    ::apache::thrift::stdcxx::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+
     socket->setConnTimeout(1000);
     socket->setRecvTimeout(1000*10000);
 
@@ -43,8 +43,8 @@ void sendRecv()
    	StudentServClient* pClient = new StudentServClient(protocol);
 	sturesult retinfo;
 	student stu;
-	
-	
+
+
 	std::vector<subjectscore> vec_subscore;
 	for(int i=0; i<3; ++i){
 		subjectscore subscore;
@@ -64,13 +64,13 @@ void sendRecv()
 	stu.__set_i_uid(1001);
 	stu.__set_str_name("xiaoming");
 	stu.__set_str_sex("man");
-	
+
 	ostringstream  out;
 	out.clear();
 	stu.printTo(out);
 	printf("student: %s\n", out.str().c_str());
 	pClient->work_score(retinfo, stu);
-	
+
 	transport->close();
 }
 
@@ -87,9 +87,9 @@ bool InitConfInfo(const std::string& file, string& str_ip, int& port) {
 	ini.Read_Profile_String("client", "host", str_val);
 	if (!str_val.empty())
 		str_ip = str_val;
-	else 
+	else
 		str_ip = "192.168.37.131";
-	
+
 	ini.Read_Profile_String("client", "port", str_val);
 	if (!str_val.empty())
 		port = atoi(str_val.c_str());

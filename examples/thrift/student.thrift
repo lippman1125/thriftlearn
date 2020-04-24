@@ -1,7 +1,7 @@
 struct subjectscore
 {
-	1: required	string 	str_subject,       //科目
-	2: required	i32    	i_score,		   //分数
+	1: required	string 	str_subject,     //科目
+	2: required	i32    	i_score,         //分数
 }
 
 struct student
@@ -17,10 +17,10 @@ struct sturesult
 	1: required i32 i_uid,                  //学号
 	2: required string str_name,            //姓名
 	3: optional string str_sex,             //性别
-	4: required i32 i_subscore,			//总分
-	5: required i32 i_avescore,			//平均分
-	6: required string str_maxsub,			//最高分科目
-	7: required string str_mixsub,			//最低分科目
+	4: required i32 i_subscore,	        //总分
+	5: required i32 i_avescore,		//平均分
+	6: required string str_maxsub,		//最高分科目
+	7: required string str_mixsub,		//最低分科目
 }
 
 service StudentServ
